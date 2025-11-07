@@ -1,7 +1,8 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
 
-# 
+# this is a dataclass (mostly for storing data) 
+# I might change to a normal class (object with methods and more formal control) later
 
 @dataclass
 class PrayerRequest:
