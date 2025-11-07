@@ -21,3 +21,5 @@ def save_prayers(prayers: List[PrayerRequest]) -> None:
 
 def next_id(prayers: List[PrayerRequest]) -> int: 
     return max((p.id for p in prayers), default=0) + 1
+    # iterates over prayers and gets id of each prayer object
+    # finds the next available id by getting MAX and adding one.
