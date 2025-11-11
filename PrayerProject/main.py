@@ -2,7 +2,7 @@ import getpass
 from typing import Optional
 from .storage import load_prayers
 from .users import create_user, verify_user
-from .actions import add_prayer, list_recent, find_by_id, mark_answered, delete_prayer
+from .actions import add_prayer, list_recent, find_prayer_by_id, mark_answered, delete_prayer
 
 def auth_menu() -> Optional[str]:
     while True:
@@ -63,7 +63,7 @@ def main():
         elif cmd == "3":
             try:
                 pid = int(input("Enter prayer id: ").strip())
-                p = find_by_id(prayers, pid)
+                p = find_prayer_by_id(prayers, pid)
                 if not p:
                     print("Not found.")
                 else:
@@ -72,7 +72,7 @@ def main():
                 print("Invalid id.")
         elif cmd == "4":
             try:
-                pid = int(input("Enter prayer id to mark answered: ").strip())
+                pid = int(input("Enter prayer id to mark answered (Enter nothing to return to list): ").strip())
                 if mark_answered(prayers, pid):
                     print("Marked as answered.")
                 else:
