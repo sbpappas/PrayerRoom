@@ -18,7 +18,7 @@ def load_users() -> Dict[str, dict]:
 def save_users(users: Dict[str, dict]) -> None:
     USERS_FILE.write_text(json.dumps(users, indent=2), encoding="utf-8")
 
-def _hash_password(password: str, salt: bytes, iterations: int = 120_000) -> str:
+def hash_password(password: str, salt: bytes, iterations: int = 120_000) -> str:
     dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, iterations) #sha 256 encryption
     return dk.hex()
 
@@ -29,7 +29,7 @@ def create_user(username: str, password: str) -> bool:
         return False
     salt = secrets.token_bytes(16)
     iterations = 120_000
-    pwd_hash = _hash_password(password, salt, iterations)
+    pwd_hash = hash_password(password, salt, iterations)
     users[username] = {
         "user ID": username,
         "salt": salt.hex(),
@@ -49,4 +49,4 @@ def verify_user(username: str, password: str) -> bool:
     salt = bytes.fromhex(info["salt"])
     iterations = int(info.get("iterations", 120_000))
     expected = info["hash"]
-    return _hash_password(password, salt, iterations) == expected
+    return hash_password(password, salt, iterations) == expected

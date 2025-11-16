@@ -72,7 +72,7 @@ def main():
                 print("Invalid id.")
         elif cmd == "4":
             try:
-                pid = int(input("Enter prayer id to mark answered (Enter nothing to return to list): ").strip())
+                pid = int(input("Enter prayer id to mark answered (Enter nothing to return to list) : ").strip())
                 if mark_answered(prayers, pid):
                     print("Marked as answered.")
                 else:
