@@ -91,7 +91,7 @@ def main():
                 print("Invalid id.")
         elif cmd == "6" or cmd.lower() in ("q", "quit", "exit"):
             print("Goodbye.")
-            break
+            break #quit program
         else:
             print("Unknown option. Choose 1-6.")
 
