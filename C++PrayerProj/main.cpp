@@ -59,9 +59,11 @@ public:
     PrayerApp() {
       loadUsers();
       loadPrayers();
+      authMenu();
     }
 
     void run() {
+      authMenu();
       std::cout << "PrayerApp started. Loaded " << prayers.size() << " prayer(s).\n";
       // minimal loop or expand as needed
     }
@@ -92,6 +94,42 @@ private:
       for (auto &pwr : prayers) j.push_back(pwr);
       std::ofstream out(p);
       out << j.dump(2);
+    }
+
+    void authMenu() {
+      bool AppRunning = true;
+      while (AppRunning) {
+        int choice;
+        std::cout << "\n1) Login\n2) Sign up\n3) Quit" << std::endl;
+        std::cin >> choice;
+        if (choice == 1) {
+          login();
+        } else if (choice == 2) {
+          signup();
+        } else if (choice == 3) {
+          AppRunning = false;
+        } else {
+          std::cout << "Invalid choice. Try again.\n";
+        }
+      }
+    }
+
+    void login() {
+      std::string username, password;
+        std::cout << "Username: ";
+        std::cin >> username;
+        std::cout << "Password: ";
+        std::cin >> password;
+        if (users.contains(username){
+          if (users[username] == password) {
+            std::cout << "Login successful.\n";
+          } else {
+            std::cout << "Incorrect password.\n";
+            exit(1); // ?
+          }
+        } else {
+          std::cout << "username not found."
+        })
     }
 };
 
