@@ -105,7 +105,7 @@ private:
         if (choice == 1) {
           login();
         } else if (choice == 2) {
-          signup();
+          //signup();
         } else if (choice == 3) {
           AppRunning = false;
         } else {
@@ -120,7 +120,7 @@ private:
         std::cin >> username;
         std::cout << "Password: ";
         std::cin >> password;
-        if (users.contains(username){
+        if (users.contains(username)){
           if (users[username] == password) {
             std::cout << "Login successful.\n";
           } else {
@@ -128,8 +128,8 @@ private:
             exit(1); // ?
           }
         } else {
-          std::cout << "username not found."
-        })
+          std::cout << "username not found." << std::endl;
+        }
     }
 };
 
