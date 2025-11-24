@@ -3,12 +3,21 @@
     {
       "name": "Mac",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+        "/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+        "/Library/Developer/CommandLineTools/usr/include"
       ],
       "compilerPath": "/usr/bin/clang++",
       "cStandard": "c11",
       "cppStandard": "c++17",
-      "intelliSenseMode": "mac-clang-x64"
+      "intelliSenseMode": "mac-clang-x64",
+      "compilerArgs": [
+        "-std=c++17",
+        "-stdlib=libc++",
+        "-isysroot",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+      ]
     }
   ],
   "version": 4

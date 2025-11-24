@@ -10,7 +10,7 @@
 
 //compile with clang++ -std=c++17 main.cpp -o app
 
-#include "nlohmann/json.hpp"
+#include "nlohmann/json.hpp" // for json files
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
@@ -53,7 +53,7 @@ class PrayerApp {
     std::string usersFile = "users.json";
     std::string prayersFile = "prayers.json";
     json users; // in-memory users object
-    std::vector<Prayer> prayers;
+    std::vector<Prayer> prayers; // in memory prayers list
 
 public:
     PrayerApp() {
@@ -68,19 +68,16 @@ public:
 
 private:
     void loadUsers() {
-      if (!fs::exists(usersFile)) { users = json::object(); return; }
-      std::ifstream in(usersFile);
+      fs::path p(usersFile);
+      if (!fs::exists(p)) { users = json::object(); return; }
+      std::ifstream in(p);
       if (in) in >> users;
     }
 
-    void saveUsers() {
-      std::ofstream out(usersFile);
-      out << users.dump(2);
-    }
-
     void loadPrayers() {
-      if (!fs::exists(prayersFile)) { prayers.clear(); return; }
-      std::ifstream in(prayersFile);
+      fs::path p(prayersFile);
+      if (!fs::exists(p)) { prayers.clear(); return; }
+      std::ifstream in(p);
       json j;
       if (in) {
         in >> j;
@@ -88,11 +85,12 @@ private:
         for (auto &el : j) prayers.push_back(el.get<Prayer>());
       }
     }
-
+    
     void savePrayers() {
+      fs::path p(prayersFile);
       json j = json::array();
-      for (auto &p : prayers) j.push_back(p);
-      std::ofstream out(prayersFile);
+      for (auto &pwr : prayers) j.push_back(pwr);
+      std::ofstream out(p);
       out << j.dump(2);
     }
 };
