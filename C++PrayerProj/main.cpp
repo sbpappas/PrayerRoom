@@ -108,6 +108,7 @@ private:
           //signup();
         } else if (choice == 3) {
           AppRunning = false;
+          std::cout << "Exiting PrayerApp.\n";
         } else {
           std::cout << "Invalid choice. Try again.\n";
         }
