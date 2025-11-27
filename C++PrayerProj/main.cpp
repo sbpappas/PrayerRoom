@@ -7,6 +7,7 @@
 #include <chrono>
 #include <random>
 #include <sstream>
+#include "UserManager.h" //for the other methods
 
 //compile with clang++ -std=c++17 main.cpp -o app
 
@@ -135,6 +136,8 @@ private:
 };
 
 int main() {
+    UserManager userManager;
+    userManager.addUser("samuel");
     PrayerApp app;
     app.run();
     return 0;
