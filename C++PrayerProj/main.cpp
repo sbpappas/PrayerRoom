@@ -137,7 +137,7 @@ private:
 
 int main() {
     UserManager userManager;
-    userManager.addUser("samuel");
+    //userManager.addUser("samuel");
     PrayerApp app;
     app.run();
     return 0;

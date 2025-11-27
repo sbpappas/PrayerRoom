@@ -24,3 +24,7 @@ bool UserManager::userExists(const std::string& username) {
 void UserManager::addUser(const std::string& username) {
     users.push_back(username);
 }
+
+bool UserManager::verifyUser(const std::string &username, const std::string &password) {
+    // implementation...
+}
