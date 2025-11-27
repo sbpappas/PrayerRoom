@@ -108,7 +108,7 @@ private:
         std::cout << "\n1) Login\n2) Sign up\n3) Quit" << std::endl;
         std::cin >> choice;
         if (choice == 1) {
-          if(userManager.login(currentUser)) {
+          if(userManager.login(currentUser)) { //returns true on success
           // login successful, currentUser is set
           break;
         }
