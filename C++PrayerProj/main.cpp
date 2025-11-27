@@ -70,6 +70,10 @@ public:
     }
 
 private:
+     UserManager userManager; 
+    std::string currentUser;
+  
+
     void loadUsers() {
       fs::path p(usersFile);
       if (!fs::exists(p)) { users = json::object(); return; }
@@ -104,7 +108,10 @@ private:
         std::cout << "\n1) Login\n2) Sign up\n3) Quit" << std::endl;
         std::cin >> choice;
         if (choice == 1) {
-          login();
+          if(userManager.login(currentUser)) {
+          // login successful, currentUser is set
+          break;
+        }
         } else if (choice == 2) {
           //signup();
         } else if (choice == 3) {
@@ -116,23 +123,23 @@ private:
       }
     }
 
-    void login() {
-      std::string username, password;
-        std::cout << "Username: ";
-        std::cin >> username;
-        std::cout << "Password: ";
-        std::cin >> password;
-        if (users.contains(username)){
-          if (users[username] == password) {
-            std::cout << "Login successful.\n";
-          } else {
-            std::cout << "Incorrect password.\n";
-            exit(1); // ?
-          }
-        } else {
-          std::cout << "username not found." << std::endl;
-        }
-    }
+    // void login() {
+    //   std::string username, password;
+    //     std::cout << "Username: ";
+    //     std::cin >> username;
+    //     std::cout << "Password: ";
+    //     std::cin >> password;
+    //     if (users.contains(username)){
+    //       if (users[username] == password) {
+    //         std::cout << "Login successful.\n";
+    //       } else {
+    //         std::cout << "Incorrect password.\n";
+    //         exit(1); // ?
+    //       }
+    //     } else {
+    //       std::cout << "username not found." << std::endl;
+    //     }
+    // }
 };
 
 int main() {
