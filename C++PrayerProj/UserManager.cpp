@@ -66,7 +66,7 @@ bool UserManager::login(std::string &currentUser) {
     currentUser = username;
     return true;
   } else {
-    std::cout << "Login failed. Invalid username or password.\n";
+    //std::cout << "Login failed. Invalid username or password.\n";
     return false;
   }
 }

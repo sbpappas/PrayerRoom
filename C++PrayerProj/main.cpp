@@ -107,11 +107,15 @@ private:
         int choice;
         std::cout << "\n1) Login\n2) Sign up\n3) Quit" << std::endl;
         std::cin >> choice;
+        //have check for valid int input here?
         if (choice == 1) {
           if(userManager.login(currentUser)) { //returns true on success
-          // login successful, currentUser is set
-          break;
-        }
+            std::cout << "Welcome, " << currentUser << "!\n";
+            AppRunning = false; //exit auth menu
+          }
+          else{
+            std::cout << "Login failed. Please try again.\n";
+          }
         } else if (choice == 2) {
           //signup();
         } else if (choice == 3) {
