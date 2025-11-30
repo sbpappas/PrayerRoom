@@ -4,6 +4,8 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
+
 
 
 using json = nlohmann::json;
@@ -30,11 +32,10 @@ void UserManager::save() {
 
 std::string UserManager::hashPassword(const std::string &password) {
   // simple non-cryptographic hash for demo only
-  //std::hash<std::string> h;
-  //std::ostringstream ss;
-  //ss << std::hex << h(password);
-  //return ss.str();
-  return "placeholder";
+  std::hash<std::string> h;
+  std::ostringstream ss;
+  ss << std::hex << h(password);
+  return ss.str();
 }
 
 bool UserManager::addUser(const std::string &username, const std::string &password) {
