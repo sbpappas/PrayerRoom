@@ -71,3 +71,17 @@ bool UserManager::login(std::string &currentUser) {
   }
 }
 
+bool UserManager::signup() {
+    std::string username, password;
+    std::cout << "Choose a username: ";
+    std::cin >> username;
+    std::cout << "Choose a password: ";
+    std::cin >> password;
+    if (addUser(username, password)) {
+      std::cout << "Signup successful. You can now log in.\n";
+      return true;
+    } else {
+      std::cout << "Signup failed. Username may already be taken.\n";
+      return false;
+    }
+}

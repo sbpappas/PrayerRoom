@@ -117,7 +117,7 @@ private:
             std::cout << "Login failed. Please try again.\n";
           }
         } else if (choice == 2) {
-          //signup();
+          userManager.signup();
         } else if (choice == 3) {
           AppRunning = false;
           std::cout << "Exiting PrayerApp.\n";

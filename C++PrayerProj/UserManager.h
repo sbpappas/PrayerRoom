@@ -17,6 +17,7 @@ public:
   bool addUser(const std::string &username, const std::string &password);
   bool verifyUser(const std::string &username, const std::string &password);
   bool login(std::string &currentUser);  // returns success, sets currentUser
+  bool signup(); //returns success, sets current User?
 
 private:
   nlohmann::json users_;
