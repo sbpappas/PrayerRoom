@@ -8,6 +8,7 @@
 #include <random>
 #include <sstream>
 #include "UserManager.h" //for the other methods
+#include "PrayerManager.h" 
 
 //compile with clang++ -std=c++17 main.cpp -o app
 
@@ -66,7 +67,7 @@ public:
     void run() {
       authMenu();
       std::cout << "PrayerApp started. Loaded " << prayers.size() << " prayer(s).\n";
-      std::cout << "\nCommands:\n 1) Add prayer\n 2) List recent\n 3) View by id\n 4) Mark answered\n 5) Delete\n 6) Quit" << std::endl;
+      mainFlow(currentUser);
     }
 
 private:
@@ -98,6 +99,39 @@ private:
           std::cout << "Invalid choice. Try again.\n";
         }
       }
+    }
+
+    void mainFlow(std::string &currentUser){
+      bool running = true;
+      while (running) {
+        int command;
+        std::cout << "\nCommands:\n 1) Add prayer\n 2) List recent\n 3) View by id\n 4) Mark answered\n 5) Delete\n 6) Quit" << std::endl;
+        std::cin >> command;
+        switch (command) {
+          case 1:
+            addPrayer(currentUser);
+            break;
+          case 2:
+            listRecent();
+            break;
+          case 3:
+            viewByID();
+            break;
+          case 4:
+            markAsAnswered();
+            break;
+          case 5:
+            removePrayer();
+            break;
+          case 6:
+            running = false;
+            std::cout << "Exiting PrayerApp.\n";
+            break;
+          default:
+            std::cout << "Invalid command. Try again.\n";
+        }
+      }
+
     }
 };
 

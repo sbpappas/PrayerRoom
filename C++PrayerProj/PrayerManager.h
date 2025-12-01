@@ -1,7 +1,6 @@
 #ifndef PRAYERMANAGER_H
 #define PRAYERMANAGER_H
 
-
 #pragma once
 #include <string>
 #include <iostream>
@@ -11,21 +10,20 @@ using json = nlohmann::json;
 
 
 //header file for prayer management to define user related ops
-class UserManager {
+class PrayerManager {
 public:
   PrayerManager();
   bool addPrayer(const std::string &username, const std::string &password);
   bool retrievePrayerByID(const std::string &username, const std::string &password);
   bool markAsAnswered(std::string &currentUser);  // returns success, sets currentUser
   bool removePrayer(); //returns success, sets current User?
-  std::vector<T> listRecent();
+   // std::vector<> listRecent();
 
 private:
   nlohmann::json prayers_;
   std::string file_ = "prayers.json";
-  void load();
-  void save();
-  std::string hashPassword(const std::string &password);
+  void loadPrayers();
+  void savePrayers();
 };
 
 #endif //?
