@@ -60,7 +60,6 @@ public:
     PrayerApp() {
       loadUsers();
       loadPrayers();
-      authMenu();
     }
 
     void run() {
@@ -70,9 +69,8 @@ public:
     }
 
 private:
-     UserManager userManager; 
+    UserManager userManager; 
     std::string currentUser;
-  
 
     void loadUsers() {
       fs::path p(usersFile);
@@ -127,28 +125,9 @@ private:
         }
       }
     }
-
-    // void login() {
-    //   std::string username, password;
-    //     std::cout << "Username: ";
-    //     std::cin >> username;
-    //     std::cout << "Password: ";
-    //     std::cin >> password;
-    //     if (users.contains(username)){
-    //       if (users[username] == password) {
-    //         std::cout << "Login successful.\n";
-    //       } else {
-    //         std::cout << "Incorrect password.\n";
-    //         exit(1); // ?
-    //       }
-    //     } else {
-    //       std::cout << "username not found." << std::endl;
-    //     }
-    // }
 };
 
 int main() {
-    UserManager userManager;
     //userManager.addUser("samuel");
     PrayerApp app;
     app.run();

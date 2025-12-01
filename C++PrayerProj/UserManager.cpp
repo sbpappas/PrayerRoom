@@ -16,7 +16,6 @@ UserManager::UserManager() {
 }
 
 void UserManager::load() {
-    std::cout << "loading users from " << std::endl;
     if (fs::exists(file_)) {
     std::ifstream in(file_);
     if (in) in >> users_;
