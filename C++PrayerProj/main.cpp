@@ -128,7 +128,6 @@ private:
 };
 
 int main() {
-    //userManager.addUser("samuel");
     PrayerApp app;
     app.run();
     return 0;
