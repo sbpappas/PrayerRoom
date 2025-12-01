@@ -58,26 +58,19 @@ class PrayerApp {
 
 public:
     PrayerApp() {
-      loadUsers();
+      //userManager::loadUsers();
       loadPrayers();
     }
 
     void run() {
       authMenu();
       std::cout << "PrayerApp started. Loaded " << prayers.size() << " prayer(s).\n";
-      // minimal loop or expand as needed
+      std::cout << "\nCommands:\n 1) Add prayer\n 2) List recent\n 3) View by id\n 4) Mark answered\n 5) Delete\n 6) Quit" << std::endl;
     }
 
 private:
     UserManager userManager; 
     std::string currentUser;
-
-    void loadUsers() {
-      fs::path p(usersFile);
-      if (!fs::exists(p)) { users = json::object(); return; }
-      std::ifstream in(p);
-      if (in) in >> users;
-    }
 
     void loadPrayers() {
       fs::path p(prayersFile);
