@@ -4,6 +4,8 @@ from .storage import load_prayers
 from .users import create_user, verify_user
 from .actions import add_prayer, list_recent, find_prayer_by_id, mark_answered, delete_prayer
 
+#run with "python3 -m PrayerProject.main"
+
 def auth_menu() -> Optional[str]:
     while True:
         print("\n1) Login\n2) Sign up\n3) Quit")
@@ -43,8 +45,8 @@ def main():
     prayers = load_prayers()
 
     while True:
-        print("\nCommands:\n 1) Add prayer\n 2) List recent\n 3) View by id\n 4) Mark answered\n 5) Delete\n 6) Quit")
-        cmd = input("Choose an option (1-6): ").strip()
+        print("\nCommands:\n 1) Add prayer\n 2) List recent\n 3) List all\n 4) View by id\n 5) Mark answered\n 6) Delete\n 7) Quit")
+        cmd = input("Choose an option (1-7): ").strip()
         if cmd == "1":
             title = input("Title (short): ").strip() #take out whitespace
             if not title:
@@ -61,6 +63,12 @@ def main():
                 status = "Answered" if p.answered else "Open"
                 print(f"[{p.id}] {p.title} — {p.user} — {status} — {p.created_at.split('T')[0]}")
         elif cmd == "3":
+            if not prayers:
+                print("No prayers found.")
+            for p in prayers:
+                status = "Answered" if p.answered else "Open"
+                print(f"[{p.id}] {p.title} — {p.user} — {status} — {p.created_at.split('T')[0]}")
+        elif cmd == "4":
             try:
                 pid = int(input("Enter prayer id: ").strip())
                 p = find_prayer_by_id(prayers, pid)
@@ -70,7 +78,7 @@ def main():
                     print(f"\nID: {p.id}\nUser: {p.user}\nTitle: {p.title}\nCreated: {p.created_at}\nAnswered: {p.answered}\n\n{p.content}\n")
             except ValueError:
                 print("Invalid id.")
-        elif cmd == "4":
+        elif cmd == "5":
             try:
                 pid = int(input("Enter prayer id to mark answered (Enter nothing to return to list) : ").strip())
                 if mark_answered(prayers, pid):
@@ -79,7 +87,7 @@ def main():
                     print("Not found or already answered.")
             except ValueError:
                 print("Invalid id.")
-        elif cmd == "5":
+        elif cmd == "6":
             try:
                 pid = int(input("Enter prayer id to delete: ").strip())
                 confirm = input("Confirm delete? (y/N): ").strip().lower()
@@ -89,11 +97,11 @@ def main():
                     print("Cancelled or not found.")
             except ValueError:
                 print("Invalid id.")
-        elif cmd == "6" or cmd.lower() in ("q", "quit", "exit"):
+        elif cmd == "7" or cmd.lower() in ("q", "quit", "exit"):
             print("Goodbye.")
             break #quit program
         else:
-            print("Unknown option. Choose 1-6.")
+            print("Unknown option. Choose 1-7.")
 
 if __name__ == "__main__":
     main()
