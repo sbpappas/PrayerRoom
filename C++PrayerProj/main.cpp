@@ -72,6 +72,7 @@ public:
 
 private:
     UserManager userManager; 
+    PrayerManager prayerManager;
     std::string currentUser;
 
     void authMenu() {
@@ -109,19 +110,19 @@ private:
         std::cin >> command;
         switch (command) {
           case 1:
-            addPrayer(currentUser);
+            prayerManager.addPrayer(currentUser);
             break;
           case 2:
-            listRecent();
+            prayerManager.listRecent();
             break;
           case 3:
-            viewByID();
+            prayerManager.viewByID();
             break;
           case 4:
-            markAsAnswered();
+            prayerManager.markAsAnswered();
             break;
           case 5:
-            removePrayer();
+            prayerManager.removePrayer();
             break;
           case 6:
             running = false;
