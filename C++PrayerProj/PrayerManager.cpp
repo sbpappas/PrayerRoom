@@ -30,7 +30,7 @@ static std::string nowISO() {
   return std::string(buf);
 }
 
-bool PrayerManager::addPrayer(const std::string &username, const std::string & /*password*/) {
+bool PrayerManager::addPrayer(const std::string &username) {
   // prompt for title/content and add a new prayer for username
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear newline
   std::string title;
@@ -58,10 +58,20 @@ bool PrayerManager::addPrayer(const std::string &username, const std::string & /
   return true;
 }
 
-bool PrayerManager::retrievePrayerByID(int id) {
-  auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id; });
+void PrayerManager::listRecent(int limit = 10) {
+  // list 10 most recent prayers
+  int count = 0;
+  std::cout << "\nRecent Prayers:\n";
+  for (auto it = prayers.rbegin(); it != prayers.rend() && count < 10; ++it, ++count) {
+    const Prayer &p = *it;
+    std::cout << "ID: " << p.id << " | User: " << p.user << " | Title: " << p.title
+              << " | Created: " << p.created_at << " | Answered: " << (p.answered ? "true" : "false") << "\n";
+  }
+}
+bool PrayerManager::retrievePrayerByID(const std::string &username, int id) {
+  auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id && p.user == username; });
   if (it == prayers.end()) {
-    std::cout << "Prayer id " << id << " not found.\n";
+    std::cout << "Prayer id " << id << " not found for user " << username << ".\n";
     return false;
   }
   const Prayer &p = *it;
@@ -71,11 +81,11 @@ bool PrayerManager::retrievePrayerByID(int id) {
   return true;
 }
 
-bool PrayerManager::markAsAnswered(std::string &currentUser);  // returns success, sets currentUser
+bool PrayerManager::markAsAnswered(int id, const std::string &currentUser);  // returns success, sets currentUser
 bool PrayerManager::removePrayer();
 
 
-void loadPrayers() {
+void PrayerManager::loadPrayers() {
     fs::path p(prayersFile);
     if (!fs::exists(p)) { prayers.clear(); return; }
     std::ifstream in(p);
@@ -87,7 +97,7 @@ void loadPrayers() {
     }
 }
     
-void savePrayers() {
+void PrayerManager::savePrayers() {
     fs::path p(prayersFile);
     json j = json::array();
     for (auto &pwr : prayers) j.push_back(pwr);
