@@ -98,7 +98,7 @@ def main():
             except ValueError:
                 print("Invalid id.")
         elif cmd == "7" or cmd.lower() in ("q", "quit", "exit"):
-            print("Goodbye.")
+            print("Goodbye. God is with you and loves you more than you can imagine.")
             break #quit program
         else:
             print("Unknown option. Choose 1-7.")
