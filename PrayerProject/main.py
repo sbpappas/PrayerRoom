@@ -45,7 +45,7 @@ def main():
     prayers = load_prayers()
 
     while True:
-        print("\nCommands:\n 1) Add prayer\n 2) List recent\n 3) List all\n 4) View by id\n 5) Mark answered\n 6) Delete\n 7) Quit")
+        print("\nCommands:\n 1) Add prayer\n 2) List most recent 10\n 3) List all\n 4) View by id\n 5) Mark answered\n 6) Delete\n 7) Quit")
         cmd = input("Choose an option (1-7): ").strip()
         if cmd == "1":
             title = input("Title (short): ").strip() #take out whitespace
