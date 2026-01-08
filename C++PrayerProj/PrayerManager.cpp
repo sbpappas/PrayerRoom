@@ -68,7 +68,10 @@ void PrayerManager::listRecent(int limit = 10) {
               << " | Created: " << p.created_at << " | Answered: " << (p.answered ? "true" : "false") << "\n";
   }
 }
-bool PrayerManager::retrievePrayerByID(const std::string &username, int id) {
+bool PrayerManager::retrievePrayerByID(const std::string &username) {
+  int id;
+  std::cout << "Enter prayer ID to retrieve: ";
+  std::cin >> id;
   auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id && p.user == username; });
   if (it == prayers.end()) {
     std::cout << "Prayer id " << id << " not found for user " << username << ".\n";
@@ -81,7 +84,23 @@ bool PrayerManager::retrievePrayerByID(const std::string &username, int id) {
   return true;
 }
 
-bool PrayerManager::markAsAnswered(int id, const std::string &currentUser);  // returns success, sets currentUser
+bool PrayerManager::markAsAnswered(const std::string &currentUser)
+{
+  int id;
+  std::cout << "Enter prayer ID to mark as answered:: ";
+  std::cin >> id;
+  if (auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id && p.user == currentUser; });
+      it != prayers.end()) {
+    it->answered = true;
+    savePrayers();
+    std::cout << "Prayer id " << id << " marked as answered.\n";
+    return true;
+  } else {
+    std::cout << "Prayer id " << id << " not found for user " << currentUser << ".\n";
+    return false;
+  }
+}  // returns success, sets currentUser
+
 bool PrayerManager::removePrayer();
 
 

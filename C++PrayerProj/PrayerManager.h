@@ -38,8 +38,8 @@ public:
   PrayerManager();
   bool addPrayer(const std::string &username);
   void listRecent(int limit = 10);
-  bool retrievePrayerByID(const std::string &username, int id);
-  bool markAsAnswered(int id, const std::string &currentUser);
+  bool retrievePrayerByID(const std::string &username);
+  bool markAsAnswered(const std::string &currentUser);
   bool removePrayer(int id, const std::string &currentUser);
   int nextId() const;
 
