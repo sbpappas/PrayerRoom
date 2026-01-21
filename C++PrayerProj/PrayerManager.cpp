@@ -58,7 +58,7 @@ bool PrayerManager::addPrayer(const std::string &username) {
   return true;
 }
 
-void PrayerManager::listRecent(int limit = 10) {
+void PrayerManager::listRecent(int limit) {
   // list 10 most recent prayers
   int count = 0;
   std::cout << "\nRecent Prayers:\n";
