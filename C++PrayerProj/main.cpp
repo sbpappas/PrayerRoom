@@ -122,7 +122,7 @@ private:
             prayerManager.markAsAnswered(currentUser);
             break;
           case 5:
-            prayerManager.removePrayer();
+            prayerManager.removePrayer(currentUser);
             break;
           case 6:
             running = false;

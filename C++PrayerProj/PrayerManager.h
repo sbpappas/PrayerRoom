@@ -40,7 +40,7 @@ public:
   void listRecent(int limit = 10);
   bool retrievePrayerByID(const std::string &username);
   bool markAsAnswered(const std::string &currentUser);
-  bool removePrayer(int id, const std::string &currentUser);
+  bool removePrayer(const std::string &currentUser);
   int nextId() const;
 
 private:

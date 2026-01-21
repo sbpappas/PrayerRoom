@@ -101,7 +101,21 @@ bool PrayerManager::markAsAnswered(const std::string &currentUser)
   }
 }  // returns success, sets currentUser
 
-bool PrayerManager::removePrayer();
+bool PrayerManager::removePrayer(const std::string &currentUser){
+  int id;
+  std::cout << "Enter prayer ID to remove: ";
+  std::cin >> id;
+  auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id && p.user == currentUser; });
+  if (it != prayers.end()) {
+    prayers.erase(it);
+    savePrayers();
+    std::cout << "Prayer id " << id << " removed.\n";
+    return true;
+  } else {
+    std::cout << "Prayer id " << id << " not found for user " << currentUser << ".\n";
+    return false;
+  }
+}
 
 
 void PrayerManager::loadPrayers() {
