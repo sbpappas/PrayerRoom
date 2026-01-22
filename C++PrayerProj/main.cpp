@@ -24,9 +24,7 @@ class PrayerApp {
 
 public:
     PrayerApp() {
-      //userManager::loadUsers();
-      //loadPrayers();
-      
+  
     }
 
     void run() {
