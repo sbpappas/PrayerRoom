@@ -10,7 +10,7 @@
 #include "UserManager.h" //for the other methods
 #include "PrayerManager.h" 
 
-//compile with clang++ -std=c++17 main.cpp -o app
+//compile with clang++ -std=c++17   main.cpp   UserManager.cpp   PrayerManager.cpp    -o app
 
 #include "nlohmann/json.hpp" // for json files
 using json = nlohmann::json;
