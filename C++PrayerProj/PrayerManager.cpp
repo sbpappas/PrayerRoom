@@ -105,6 +105,12 @@ bool PrayerManager::removePrayer(const std::string &currentUser){
   int id;
   std::cout << "Enter prayer ID to remove: ";
   std::cin >> id;
+  if (std::cin.fail()) {
+    std::cin.clear();  // Clear the error flag
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the buffer
+    std::cout << "Invalid input. Please enter a number.\n";
+    return false;
+  }
   auto it = std::find_if(prayers.begin(), prayers.end(), [&](const Prayer &p){ return p.id == id && p.user == currentUser; });
   if (it != prayers.end()) {
     prayers.erase(it);
